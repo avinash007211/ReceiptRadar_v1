@@ -2,5 +2,5 @@ build/
 .dart_tool/
 .flutter-plugins
 .flutter-plugins-dependencies
-*.db
-*.pyc
+android/app/build/
+ios/Flutter/Generated.xcconfig
