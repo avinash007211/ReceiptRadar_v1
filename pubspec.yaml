@@ -1,0 +1,51 @@
+name: receipt_radar
+description: Scan receipts, auto-categorize for German tax, export to DATEV.
+publish_to: 'none'
+version: 1.0.0+1
+
+environment:
+  sdk: '>=3.4.0 <4.0.0'
+
+dependencies:
+  flutter:
+    sdk: flutter
+  cupertino_icons: ^1.0.8
+
+  # Navigation
+  go_router: ^14.3.0
+
+  # State management
+  flutter_riverpod: ^3.3.0
+
+  # UI & Animations
+  google_fonts: ^6.2.1
+  flutter_animate: ^4.5.0
+
+  # Camera + OCR
+  camera: ^0.11.0+2
+  google_mlkit_text_recognition: ^0.15.0
+  image_picker: ^1.1.2
+
+  # Local storage (keep it simple — no Hive, no Firebase)
+  shared_preferences: ^2.3.2
+  path_provider: ^2.1.4
+  path: ^1.9.0
+
+  # Export / file sharing
+  csv: ^6.0.0
+  share_plus: ^10.0.2
+
+  # Utils
+  intl: ^0.19.0
+  uuid: ^4.4.0
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+  flutter_lints: ^4.0.0
+
+flutter:
+  uses-material-design: true
+  assets:
+    - assets/images/
+    - assets/animations/
