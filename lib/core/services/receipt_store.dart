@@ -6,6 +6,7 @@ import '../constants/app_constants.dart';
 import '../../features/receipt/models/receipt.dart';
 
 /// Async provider that loads receipts from SharedPreferences on app start.
+/// UI widgets use ref.watch(receiptsProvider) to get a reactive list.
 class ReceiptStore extends AsyncNotifier<List<Receipt>> {
   late SharedPreferences _prefs;
 
@@ -36,18 +37,21 @@ class ReceiptStore extends AsyncNotifier<List<Receipt>> {
   // ── Public API ─────────────────────────────────────
 
   Future<void> add(Receipt receipt) async {
-    // Using .value instead of .valueOrNull for broader compatibility
+    // Use .value instead of .valueOrNull to avoid undefined getter errors
     final current = state.value ?? <Receipt>[];
-    final updated = <Receipt>[receipt, ...current]; // Explicitly typed list
+    // Explicitly type the list to avoid List<dynamic> errors
+    final updated = <Receipt>[receipt, ...current];
     await _save(updated);
     state = AsyncValue.data(updated);
   }
 
-  // RENAMED from 'update' to 'updateReceipt' to avoid Riverpod collision
+  /// RENAMED from 'update' to 'updateReceipt'
+  /// This avoids a naming collision with AsyncNotifier.update()
   Future<void> updateReceipt(Receipt receipt) async {
     final current = state.value ?? <Receipt>[];
-    final updated =
-        current.map((r) => r.id == receipt.id ? receipt : r).toList();
+    final updated = current
+        .map((r) => r.id == receipt.id ? receipt : r)
+        .toList();
     await _save(updated);
     state = AsyncValue.data(updated);
   }
@@ -66,17 +70,18 @@ class ReceiptStore extends AsyncNotifier<List<Receipt>> {
 
   int countThisMonth() {
     final now = DateTime.now();
-    // Use value ?? [] to safely handle loading/error states
     final receipts = state.value ?? <Receipt>[];
     return receipts
-        .where((r) =>
-            r.createdAt.year == now.year && r.createdAt.month == now.month)
+        .where(
+          (r) => r.createdAt.year == now.year && r.createdAt.month == now.month,
+        )
         .length;
   }
 }
 
-final receiptsProvider =
-    AsyncNotifierProvider<ReceiptStore, List<Receipt>>(ReceiptStore.new);
+final receiptsProvider = AsyncNotifierProvider<ReceiptStore, List<Receipt>>(
+  ReceiptStore.new,
+);
 
 // ── Pro status ────────────────────────────────────────
 class ProStatus extends Notifier<bool> {

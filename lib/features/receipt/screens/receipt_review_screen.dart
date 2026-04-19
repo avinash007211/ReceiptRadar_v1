@@ -80,7 +80,7 @@ class _ReceiptReviewScreenState extends ConsumerState<ReceiptReviewScreen> {
       categoryId: _categoryId,
       notes: _notesCtrl.text.trim().isEmpty ? null : _notesCtrl.text.trim(),
     );
-    await ref.read(receiptsProvider.notifier).update(updated);
+    await ref.read(receiptsProvider.notifier).updateReceipt(updated);
     if (!mounted) return;
     ScaffoldMessenger.of(context).showSnackBar(
       const SnackBar(
@@ -118,8 +118,7 @@ class _ReceiptReviewScreenState extends ConsumerState<ReceiptReviewScreen> {
 
     return asyncReceipts.when(
       loading: () => const Scaffold(
-        body: Center(
-            child: CircularProgressIndicator(color: AppColors.accent)),
+        body: Center(child: CircularProgressIndicator(color: AppColors.accent)),
       ),
       error: (e, _) => Scaffold(
         appBar: AppBar(),
@@ -190,8 +189,7 @@ class _ReceiptReviewScreenState extends ConsumerState<ReceiptReviewScreen> {
           GestureDetector(
             onTap: _pickDate,
             child: Container(
-              padding:
-                  const EdgeInsets.symmetric(horizontal: 16, vertical: 16),
+              padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 16),
               decoration: BoxDecoration(
                 color: AppColors.bgSecondary,
                 borderRadius: BorderRadius.circular(14),
@@ -223,8 +221,8 @@ class _ReceiptReviewScreenState extends ConsumerState<ReceiptReviewScreen> {
                     _fieldLabel('Total (€)'),
                     TextField(
                       controller: _totalCtrl,
-                      keyboardType: const TextInputType.numberWithOptions(
-                          decimal: true),
+                      keyboardType:
+                          const TextInputType.numberWithOptions(decimal: true),
                       decoration: const InputDecoration(hintText: '0.00'),
                     ),
                   ],
@@ -238,8 +236,8 @@ class _ReceiptReviewScreenState extends ConsumerState<ReceiptReviewScreen> {
                     _fieldLabel('VAT (€)'),
                     TextField(
                       controller: _vatCtrl,
-                      keyboardType: const TextInputType.numberWithOptions(
-                          decimal: true),
+                      keyboardType:
+                          const TextInputType.numberWithOptions(decimal: true),
                       decoration: const InputDecoration(hintText: '0.00'),
                     ),
                   ],
@@ -262,14 +260,11 @@ class _ReceiptReviewScreenState extends ConsumerState<ReceiptReviewScreen> {
                         right: rate == AppConstants.vatRates.last ? 0 : 8),
                     padding: const EdgeInsets.symmetric(vertical: 12),
                     decoration: BoxDecoration(
-                      color: isSelected
-                          ? AppColors.accent
-                          : AppColors.bgSecondary,
+                      color:
+                          isSelected ? AppColors.accent : AppColors.bgSecondary,
                       borderRadius: BorderRadius.circular(12),
                       border: Border.all(
-                        color: isSelected
-                            ? AppColors.accent
-                            : AppColors.border,
+                        color: isSelected ? AppColors.accent : AppColors.border,
                         width: isSelected ? 0 : 0.5,
                       ),
                     ),
@@ -277,9 +272,8 @@ class _ReceiptReviewScreenState extends ConsumerState<ReceiptReviewScreen> {
                       child: Text(
                         '${rate.toInt()}%',
                         style: AppTextStyles.labelLarge.copyWith(
-                          color: isSelected
-                              ? Colors.white
-                              : AppColors.textPrimary,
+                          color:
+                              isSelected ? Colors.white : AppColors.textPrimary,
                         ),
                       ),
                     ),
