@@ -104,3 +104,6 @@ secrets.json
 **/android/.gradle/
 **/local.properties
 .claude/
+
+android/build/
+package-lock.json
