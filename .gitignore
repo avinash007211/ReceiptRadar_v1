@@ -4,3 +4,12 @@ build/
 .flutter-plugins-dependencies
 android/app/build/
 ios/Flutter/Generated.xcconfig
+
+# Flutter / Dart build artifacts (don't commit)
+/build/
+/.dart_tool/
+/.flutter-plugins
+/.flutter-plugins-dependencies
+
+# Web build output
+/build/web/
