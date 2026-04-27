@@ -9,6 +9,7 @@ import '../../../core/theme/app_text_styles.dart';
 import '../../../core/router/app_router.dart';
 import '../../../core/constants/app_constants.dart';
 import '../../../core/services/receipt_store.dart';
+import '../../../core/services/platform_scanner.dart';
 import '../../receipt/models/receipt.dart';
 
 class HomeScreen extends ConsumerWidget {
@@ -38,10 +39,12 @@ class HomeScreen extends ConsumerWidget {
         backgroundColor: AppColors.accent,
         foregroundColor: Colors.white,
         elevation: 4,
-        icon: const Icon(Icons.camera_alt_rounded),
-        label: const Text(
-          'Scan Receipt',
-          style: TextStyle(fontWeight: FontWeight.w700),
+        icon: Icon(
+          isCameraSupported ? Icons.camera_alt_rounded : Icons.add_rounded,
+        ),
+        label: Text(
+          isCameraSupported ? 'Scan Receipt' : 'Add Receipt',
+          style: const TextStyle(fontWeight: FontWeight.w700),
         ),
       ),
     );
@@ -460,8 +463,11 @@ class _EmptyState extends StatelessWidget {
           const SizedBox(height: 18),
           ElevatedButton.icon(
             onPressed: onTap,
-            icon: const Icon(Icons.camera_alt_rounded, size: 18),
-            label: const Text('Scan Now'),
+            icon: Icon(
+              isCameraSupported ? Icons.camera_alt_rounded : Icons.add,
+              size: 18,
+            ),
+            label: Text(isCameraSupported ? 'Scan Now' : 'Add Now'),
           ),
         ],
       ),
