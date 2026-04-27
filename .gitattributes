@@ -1,0 +1,38 @@
+# Normalize line endings so Windows checkouts don't show every file as modified.
+# Text files are stored as LF in the repo and converted to the OS native line
+# ending on checkout. Binary files are left untouched.
+* text=auto eol=lf
+
+# Explicit text types
+*.dart       text eol=lf
+*.yaml       text eol=lf
+*.yml        text eol=lf
+*.json       text eol=lf
+*.md         text eol=lf
+*.html       text eol=lf
+*.css        text eol=lf
+*.js         text eol=lf
+*.kt         text eol=lf
+*.java       text eol=lf
+*.gradle     text eol=lf
+*.xml        text eol=lf
+*.properties text eol=lf
+*.sh         text eol=lf
+
+# Windows-only files keep CRLF
+*.bat        text eol=crlf
+*.cmd        text eol=crlf
+
+# Binary — don't touch
+*.png        binary
+*.jpg        binary
+*.jpeg       binary
+*.gif        binary
+*.ico        binary
+*.webp       binary
+*.pdf        binary
+*.jks        binary
+*.keystore   binary
+*.so         binary
+*.dll        binary
+*.zip        binary

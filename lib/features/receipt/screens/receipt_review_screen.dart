@@ -1,4 +1,3 @@
-import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
@@ -11,6 +10,7 @@ import '../../../core/constants/app_constants.dart';
 import '../../../core/services/receipt_store.dart';
 import '../models/receipt.dart';
 import '../widgets/category_picker.dart';
+import '../../../shared/widgets/receipt_image.dart';
 
 class ReceiptReviewScreen extends ConsumerStatefulWidget {
   final String receiptId;
@@ -154,24 +154,11 @@ class _ReceiptReviewScreenState extends ConsumerState<ReceiptReviewScreen> {
       body: ListView(
         padding: const EdgeInsets.fromLTRB(20, 12, 20, 120),
         children: [
-          // Image preview
+          // Image preview (only renders on mobile; web shows nothing)
           if (receipt.imagePath != null)
             ClipRRect(
               borderRadius: BorderRadius.circular(16),
-              child: Image.file(
-                File(receipt.imagePath!),
-                height: 160,
-                width: double.infinity,
-                fit: BoxFit.cover,
-                errorBuilder: (_, __, ___) => Container(
-                  height: 160,
-                  color: AppColors.bgTertiary,
-                  child: const Center(
-                    child: Icon(Icons.image_not_supported,
-                        size: 40, color: AppColors.textMuted),
-                  ),
-                ),
-              ),
+              child: ReceiptImage(path: receipt.imagePath!, height: 160),
             ),
           const SizedBox(height: 20),
 

@@ -1,19 +1,21 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android">
 
-    <uses-permission android:name="android.permission.INTERNET"/>
     <uses-permission android:name="android.permission.CAMERA"/>
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"
         android:maxSdkVersion="32"/>
     <uses-permission android:name="android.permission.READ_MEDIA_IMAGES"/>
 
-    <uses-feature android:name="android.hardware.camera" android:required="true"/>
+    <!-- Camera is used for OCR scanning but not required — tablets and web users can still use manual entry -->
+    <uses-feature android:name="android.hardware.camera" android:required="false"/>
 
     <application
         android:label="Receipt Radar"
         android:name="${applicationName}"
         android:icon="@mipmap/ic_launcher"
-        android:theme="@style/NormalTheme">
+        android:theme="@style/NormalTheme"
+        android:networkSecurityConfig="@xml/network_security_config"
+        android:usesCleartextTraffic="false">
 
         <activity
             android:name=".MainActivity"
@@ -38,7 +40,7 @@
             android:name="flutterEmbedding"
             android:value="2"/>
 
-        <!-- ML Kit — ships text recognition model with the app -->
+        <!-- ML Kit — ships text recognition model with the app (no network download) -->
         <meta-data
             android:name="com.google.mlkit.vision.DEPENDENCIES"
             android:value="ocr" />

@@ -1,9 +1,7 @@
-import 'dart:io';
+import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:intl/intl.dart';
-import 'package:path/path.dart' as p;
-import 'package:path_provider/path_provider.dart';
 import 'package:share_plus/share_plus.dart';
 
 import '../../../core/theme/app_colors.dart';
@@ -66,19 +64,24 @@ class _ExportScreenState extends ConsumerState<ExportScreen> {
           ? CsvExporter.toDatevCsv(filtered)
           : CsvExporter.toSimpleCsv(filtered);
 
-      final dir = await getApplicationDocumentsDirectory();
       final ts = DateFormat('yyyyMMdd_HHmm').format(DateTime.now());
       final fname = _format == 'datev'
           ? 'receipt_radar_DATEV_$ts.csv'
           : 'receipt_radar_$ts.csv';
-      final path = p.join(dir.path, fname);
 
-      final file = File(path);
-      await file.writeAsString(csv);
+      // Build XFile from in-memory bytes — works on Android, iOS, AND web.
+      // No path_provider needed (which doesn't exist on web).
+      // On web, share_plus will fall back to a browser download.
+      final bytes = utf8.encode(csv);
+      final xfile = XFile.fromData(
+        bytes,
+        mimeType: 'text/csv',
+        name: fname,
+      );
 
-      // Trigger platform share sheet
       await Share.shareXFiles(
-        [XFile(path, mimeType: 'text/csv')],
+        [xfile],
+        fileNameOverrides: [fname],
         subject: 'Receipts ${DateFormat.yMMMd().format(_from)} – '
             '${DateFormat.yMMMd().format(_to)}',
         text: CsvExporter.summary(filtered),

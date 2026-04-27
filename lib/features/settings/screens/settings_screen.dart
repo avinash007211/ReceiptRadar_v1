@@ -24,7 +24,7 @@ class SettingsScreen extends ConsumerWidget {
           _ProUpgradeCard(onTap: () => context.push(AppRoutes.paywall)),
           const SizedBox(height: 24),
 
-          _SectionLabel('DATA'),
+          const _SectionLabel('DATA'),
           _SettingsTile(
             icon: Icons.delete_outline,
             iconColor: AppColors.error,
@@ -35,7 +35,7 @@ class SettingsScreen extends ConsumerWidget {
 
           const SizedBox(height: 24),
 
-          _SectionLabel('ABOUT'),
+          const _SectionLabel('ABOUT'),
           _SettingsTile(
             icon: Icons.info_outline,
             iconColor: AppColors.info,

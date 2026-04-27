@@ -1,4 +1,3 @@
-import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
@@ -10,6 +9,7 @@ import '../../../core/router/app_router.dart';
 import '../../../core/constants/app_constants.dart';
 import '../../../core/services/receipt_store.dart';
 import '../models/receipt.dart';
+import '../../../shared/widgets/receipt_image.dart';
 
 class ReceiptDetailScreen extends ConsumerWidget {
   final String receiptId;
@@ -113,24 +113,11 @@ class _DetailContent extends ConsumerWidget {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                // Image preview
+                // Image preview (only renders on mobile; null/empty on web)
                 if (receipt.imagePath != null)
                   ClipRRect(
                     borderRadius: BorderRadius.circular(16),
-                    child: Image.file(
-                      File(receipt.imagePath!),
-                      width: double.infinity,
-                      height: 200,
-                      fit: BoxFit.cover,
-                      errorBuilder: (_, __, ___) => Container(
-                        height: 200,
-                        color: AppColors.bgTertiary,
-                        child: const Center(
-                          child: Icon(Icons.image_not_supported,
-                              size: 40, color: AppColors.textMuted),
-                        ),
-                      ),
-                    ),
+                    child: ReceiptImage(path: receipt.imagePath!),
                   ),
                 const SizedBox(height: 24),
 
