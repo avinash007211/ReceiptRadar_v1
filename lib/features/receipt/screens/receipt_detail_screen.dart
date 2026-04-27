@@ -141,7 +141,7 @@ class _DetailContent extends ConsumerWidget {
                       padding: const EdgeInsets.symmetric(
                           horizontal: 10, vertical: 6),
                       decoration: BoxDecoration(
-                        color: cat.color.withOpacity(0.12),
+                        color: cat.color.withValues(alpha: 0.12),
                         borderRadius: BorderRadius.circular(99),
                       ),
                       child: Row(

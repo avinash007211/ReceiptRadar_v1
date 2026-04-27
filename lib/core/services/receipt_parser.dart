@@ -112,7 +112,6 @@ class ReceiptParser {
   /// Looks for the largest number prefixed by "Summe", "Total", "Gesamt", "EUR", "€".
   /// Falls back to the largest currency amount on the receipt.
   static double? _extractTotal(String text) {
-    final lower = text.toLowerCase();
     final lines = text.split('\n');
 
     // Strong signal keywords (in priority order — gesamt/total should win over summe
@@ -150,8 +149,6 @@ class ReceiptParser {
   /// Defaults to 19% (German standard rate) and calculates if no explicit VAT found.
   static ({double vatAmount, double vatRate}) _extractVat(
       String text, double total) {
-    final lower = text.toLowerCase();
-
     // Try to find explicit VAT line: "MwSt 19%  5,12"
     final patterns = [
       RegExp(r'mwst\.?\s*(\d{1,2})\s*%?\s*[^0-9]{0,5}(\d+[,.]\d{2})',

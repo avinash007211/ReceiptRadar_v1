@@ -33,7 +33,7 @@ class CategoryPicker extends StatelessWidget {
                   horizontal: 10, vertical: 14),
               decoration: BoxDecoration(
                 color: isSelected
-                    ? cat.color.withOpacity(0.12)
+                    ? cat.color.withValues(alpha: 0.12)
                     : AppColors.bgSecondary,
                 borderRadius: BorderRadius.circular(14),
                 border: Border.all(

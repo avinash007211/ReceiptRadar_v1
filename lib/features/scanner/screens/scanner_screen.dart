@@ -207,7 +207,7 @@ class _ScannerScreenState extends ConsumerState<ScannerScreen> {
                 padding: const EdgeInsets.symmetric(
                     horizontal: 16, vertical: 10),
                 decoration: BoxDecoration(
-                  color: Colors.black.withOpacity(0.6),
+                  color: Colors.black.withValues(alpha: 0.6),
                   borderRadius: BorderRadius.circular(99),
                 ),
                 child: Text(
@@ -232,7 +232,7 @@ class _ScannerScreenState extends ConsumerState<ScannerScreen> {
                   decoration: BoxDecoration(
                     shape: BoxShape.circle,
                     border: Border.all(color: Colors.white, width: 3),
-                    color: Colors.white.withOpacity(0.1),
+                    color: Colors.white.withValues(alpha: 0.1),
                   ),
                   child: Center(
                     child: _isProcessing
@@ -265,7 +265,7 @@ class _ScannerScreenState extends ConsumerState<ScannerScreen> {
           if (_isProcessing)
             Positioned.fill(
               child: Container(
-                color: Colors.black.withOpacity(0.7),
+                color: Colors.black.withValues(alpha: 0.7),
                 child: Center(
                   child: Container(
                     padding: const EdgeInsets.all(24),
@@ -289,7 +289,7 @@ class _ScannerScreenState extends ConsumerState<ScannerScreen> {
                         Text(
                           'AI is extracting the details',
                           style: AppTextStyles.bodySmall.copyWith(
-                            color: Colors.white.withOpacity(0.6),
+                            color: Colors.white.withValues(alpha: 0.6),
                           ),
                         ),
                       ],
@@ -344,7 +344,7 @@ class _RoundIconButton extends StatelessWidget {
         width: 44,
         height: 44,
         decoration: BoxDecoration(
-          color: Colors.black.withOpacity(0.5),
+          color: Colors.black.withValues(alpha: 0.5),
           shape: BoxShape.circle,
         ),
         child: Icon(icon, color: Colors.white, size: 20),
@@ -370,7 +370,7 @@ class _CornerPainter extends CustomPainter {
   @override
   void paint(Canvas canvas, Size size) {
     final paint = Paint()
-      ..color = Colors.white.withOpacity(0.85)
+      ..color = Colors.white.withValues(alpha: 0.85)
       ..strokeWidth = 3
       ..style = PaintingStyle.stroke
       ..strokeCap = StrokeCap.round;

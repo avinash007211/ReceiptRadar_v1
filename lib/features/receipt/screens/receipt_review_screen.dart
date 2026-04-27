@@ -310,7 +310,7 @@ class _ReceiptReviewScreenState extends ConsumerState<ReceiptReviewScreen> {
               color: AppColors.accentLight,
               borderRadius: BorderRadius.circular(12),
               border: Border.all(
-                  color: AppColors.accent.withOpacity(0.15), width: 0.5),
+                  color: AppColors.accent.withValues(alpha: 0.15), width: 0.5),
             ),
             child: Row(
               crossAxisAlignment: CrossAxisAlignment.start,

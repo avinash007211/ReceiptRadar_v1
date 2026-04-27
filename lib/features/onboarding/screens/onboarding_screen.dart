@@ -25,14 +25,14 @@ class OnboardingScreen extends StatelessWidget {
                   padding: const EdgeInsets.symmetric(
                       horizontal: 14, vertical: 7),
                   decoration: BoxDecoration(
-                    color: Colors.white.withOpacity(0.15),
+                    color: Colors.white.withValues(alpha: 0.15),
                     borderRadius: BorderRadius.circular(99),
-                    border: Border.all(color: Colors.white.withOpacity(0.2)),
+                    border: Border.all(color: Colors.white.withValues(alpha: 0.2)),
                   ),
                   child: Text(
                     '✦ Made for German freelancers',
                     style: AppTextStyles.labelSmall.copyWith(
-                      color: Colors.white.withOpacity(0.9),
+                      color: Colors.white.withValues(alpha: 0.9),
                     ),
                   ),
                 )
@@ -59,7 +59,7 @@ class OnboardingScreen extends StatelessWidget {
                 Text(
                   'Scan. Auto-categorize for your\nSteuerberater. Export DATEV CSV.',
                   style: AppTextStyles.bodyLarge.copyWith(
-                    color: Colors.white.withOpacity(0.75),
+                    color: Colors.white.withValues(alpha: 0.75),
                   ),
                 )
                     .animate(delay: 200.ms)
@@ -120,7 +120,7 @@ class OnboardingScreen extends StatelessWidget {
                   child: Text(
                     '10 free receipts per month · No signup needed',
                     style: TextStyle(
-                      color: Colors.white.withOpacity(0.5),
+                      color: Colors.white.withValues(alpha: 0.5),
                       fontSize: 13,
                       fontWeight: FontWeight.w500,
                     ),
@@ -147,9 +147,9 @@ class _FeatureCard extends StatelessWidget {
     return Container(
       padding: const EdgeInsets.symmetric(horizontal: 14, vertical: 12),
       decoration: BoxDecoration(
-        color: Colors.white.withOpacity(0.12),
+        color: Colors.white.withValues(alpha: 0.12),
         borderRadius: BorderRadius.circular(14),
-        border: Border.all(color: Colors.white.withOpacity(0.15)),
+        border: Border.all(color: Colors.white.withValues(alpha: 0.15)),
       ),
       child: Row(
         children: [
@@ -159,7 +159,7 @@ class _FeatureCard extends StatelessWidget {
             child: Text(
               label,
               style: TextStyle(
-                color: Colors.white.withOpacity(0.9),
+                color: Colors.white.withValues(alpha: 0.9),
                 fontSize: 13,
                 fontWeight: FontWeight.w600,
                 height: 1.2,

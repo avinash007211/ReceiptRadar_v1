@@ -246,7 +246,7 @@ class _StatsCard extends StatelessWidget {
           Text(
             'THIS MONTH',
             style: AppTextStyles.labelSmall
-                .copyWith(color: Colors.white.withOpacity(0.5)),
+                .copyWith(color: Colors.white.withValues(alpha: 0.5)),
           ),
           const SizedBox(height: 6),
           Text(
@@ -265,7 +265,7 @@ class _StatsCard extends StatelessWidget {
               Container(
                 width: 1,
                 height: 30,
-                color: Colors.white.withOpacity(0.1),
+                color: Colors.white.withValues(alpha: 0.1),
               ),
               Expanded(
                 child: _StatItem(
@@ -296,7 +296,7 @@ class _StatItem extends StatelessWidget {
           Text(
             label,
             style: AppTextStyles.bodySmall
-                .copyWith(color: Colors.white.withOpacity(0.5), fontSize: 11),
+                .copyWith(color: Colors.white.withValues(alpha: 0.5), fontSize: 11),
           ),
           const SizedBox(height: 2),
           Text(
@@ -345,7 +345,7 @@ class _QuickAction extends StatelessWidget {
               width: 36,
               height: 36,
               decoration: BoxDecoration(
-                color: color.withOpacity(0.12),
+                color: color.withValues(alpha: 0.12),
                 borderRadius: BorderRadius.circular(10),
               ),
               child: Icon(icon, color: color, size: 20),
@@ -392,7 +392,7 @@ class _ReceiptRow extends StatelessWidget {
               width: 44,
               height: 44,
               decoration: BoxDecoration(
-                color: cat.color.withOpacity(0.12),
+                color: cat.color.withValues(alpha: 0.12),
                 borderRadius: BorderRadius.circular(12),
               ),
               child: Center(
