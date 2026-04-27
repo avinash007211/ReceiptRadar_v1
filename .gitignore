@@ -4,3 +4,8 @@ build/
 .flutter-plugins-dependencies
 android/app/build/
 ios/Flutter/Generated.xcconfig
+
+# Gradle cache
+.gradle/
+**/android/.gradle/
+**/local.properties
