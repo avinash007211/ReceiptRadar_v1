@@ -24,7 +24,7 @@ class SettingsScreen extends ConsumerWidget {
           _ProUpgradeCard(onTap: () => context.push(AppRoutes.paywall)),
           const SizedBox(height: 24),
 
-          _SectionLabel('DATA'),
+          const _SectionLabel('DATA'),
           _SettingsTile(
             icon: Icons.delete_outline,
             iconColor: AppColors.error,
@@ -35,7 +35,7 @@ class SettingsScreen extends ConsumerWidget {
 
           const SizedBox(height: 24),
 
-          _SectionLabel('ABOUT'),
+          const _SectionLabel('ABOUT'),
           _SettingsTile(
             icon: Icons.info_outline,
             iconColor: AppColors.info,
@@ -129,10 +129,10 @@ class _ProUpgradeCard extends StatelessWidget {
               width: 48,
               height: 48,
               decoration: BoxDecoration(
-                color: AppColors.goldAccent.withOpacity(0.18),
+                color: AppColors.goldAccent.withValues(alpha: 0.18),
                 borderRadius: BorderRadius.circular(12),
                 border: Border.all(
-                    color: AppColors.goldAccent.withOpacity(0.4)),
+                    color: AppColors.goldAccent.withValues(alpha: 0.4)),
               ),
               child: const Center(
                 child: Text('✨',
@@ -150,13 +150,13 @@ class _ProUpgradeCard extends StatelessWidget {
                   Text(
                     'Unlimited scans + DATEV export',
                     style: AppTextStyles.onDarkBody.copyWith(
-                        fontSize: 12, color: Colors.white.withOpacity(0.6)),
+                        fontSize: 12, color: Colors.white.withValues(alpha: 0.6)),
                   ),
                 ],
               ),
             ),
             Icon(Icons.arrow_forward,
-                color: AppColors.goldAccent.withOpacity(0.9), size: 20),
+                color: AppColors.goldAccent.withValues(alpha: 0.9), size: 20),
           ],
         ),
       ),
@@ -209,7 +209,7 @@ class _SettingsTile extends StatelessWidget {
               width: 36,
               height: 36,
               decoration: BoxDecoration(
-                color: iconColor.withOpacity(0.12),
+                color: iconColor.withValues(alpha: 0.12),
                 borderRadius: BorderRadius.circular(10),
               ),
               child: Icon(icon, color: iconColor, size: 18),

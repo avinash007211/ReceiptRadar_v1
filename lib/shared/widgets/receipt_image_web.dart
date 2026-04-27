@@ -9,5 +9,5 @@ class ReceiptImage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) =>
-      SizedBox(height: 0, width: double.infinity);
+      const SizedBox(height: 0, width: double.infinity);
 }

@@ -32,7 +32,7 @@ class _PaywallScreenState extends ConsumerState<PaywallScreen> {
                     IconButton(
                       onPressed: () => context.pop(),
                       icon: Icon(Icons.close,
-                          color: Colors.white.withOpacity(0.7)),
+                          color: Colors.white.withValues(alpha: 0.7)),
                     ),
                   ],
                 ),
@@ -43,10 +43,10 @@ class _PaywallScreenState extends ConsumerState<PaywallScreen> {
                   padding: const EdgeInsets.symmetric(
                       horizontal: 14, vertical: 7),
                   decoration: BoxDecoration(
-                    color: AppColors.goldAccent.withOpacity(0.15),
+                    color: AppColors.goldAccent.withValues(alpha: 0.15),
                     borderRadius: BorderRadius.circular(99),
                     border: Border.all(
-                        color: AppColors.goldAccent.withOpacity(0.3)),
+                        color: AppColors.goldAccent.withValues(alpha: 0.3)),
                   ),
                   child: Row(
                     mainAxisSize: MainAxisSize.min,
@@ -127,7 +127,7 @@ class _PaywallScreenState extends ConsumerState<PaywallScreen> {
                   color: AppColors.bgDark,
                   border: Border(
                     top: BorderSide(
-                        color: Colors.white.withOpacity(0.08), width: 0.5),
+                        color: Colors.white.withValues(alpha: 0.08), width: 0.5),
                   ),
                 ),
                 child: SafeArea(
@@ -161,7 +161,7 @@ class _PaywallScreenState extends ConsumerState<PaywallScreen> {
                       Text(
                         'Cancel anytime · 7-day money-back guarantee',
                         style: AppTextStyles.bodySmall.copyWith(
-                          color: Colors.white.withOpacity(0.4),
+                          color: Colors.white.withValues(alpha: 0.4),
                           fontSize: 11,
                         ),
                       ),
@@ -211,7 +211,7 @@ class _FeatureRow extends StatelessWidget {
             width: 40,
             height: 40,
             decoration: BoxDecoration(
-              color: AppColors.goldAccent.withOpacity(0.15),
+              color: AppColors.goldAccent.withValues(alpha: 0.15),
               borderRadius: BorderRadius.circular(10),
             ),
             child: Center(
@@ -231,7 +231,7 @@ class _FeatureRow extends StatelessWidget {
                 Text(subtitle,
                     style: AppTextStyles.onDarkBody.copyWith(
                         fontSize: 13,
-                        color: Colors.white.withOpacity(0.6))),
+                        color: Colors.white.withValues(alpha: 0.6))),
               ],
             ),
           ),
@@ -267,13 +267,13 @@ class _PlanCard extends StatelessWidget {
         padding: const EdgeInsets.all(16),
         decoration: BoxDecoration(
           color: selected
-              ? AppColors.goldAccent.withOpacity(0.12)
-              : Colors.white.withOpacity(0.05),
+              ? AppColors.goldAccent.withValues(alpha: 0.12)
+              : Colors.white.withValues(alpha: 0.05),
           borderRadius: BorderRadius.circular(14),
           border: Border.all(
             color: selected
                 ? AppColors.goldAccent
-                : Colors.white.withOpacity(0.1),
+                : Colors.white.withValues(alpha: 0.1),
             width: selected ? 1.5 : 0.5,
           ),
         ),
@@ -287,7 +287,7 @@ class _PlanCard extends StatelessWidget {
                 border: Border.all(
                   color: selected
                       ? AppColors.goldAccent
-                      : Colors.white.withOpacity(0.2),
+                      : Colors.white.withValues(alpha: 0.2),
                   width: 2,
                 ),
                 color: selected ? AppColors.goldAccent : Colors.transparent,
@@ -343,7 +343,7 @@ class _PlanCard extends StatelessWidget {
                   child: Text(
                     period,
                     style: AppTextStyles.bodySmall.copyWith(
-                        color: Colors.white.withOpacity(0.6), fontSize: 12),
+                        color: Colors.white.withValues(alpha: 0.6), fontSize: 12),
                   ),
                 ),
               ],

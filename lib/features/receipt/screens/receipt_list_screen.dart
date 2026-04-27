@@ -153,7 +153,7 @@ class _ListRow extends StatelessWidget {
               width: 44,
               height: 44,
               decoration: BoxDecoration(
-                color: cat.color.withOpacity(0.12),
+                color: cat.color.withValues(alpha: 0.12),
                 borderRadius: BorderRadius.circular(12),
               ),
               child: Center(

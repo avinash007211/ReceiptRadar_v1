@@ -139,7 +139,7 @@ class _ScannerScreenState extends ConsumerState<ScannerScreen> {
               color: AppColors.accentLight,
               borderRadius: BorderRadius.circular(14),
               border: Border.all(
-                  color: AppColors.accent.withOpacity(0.2), width: 0.5),
+                  color: AppColors.accent.withValues(alpha: 0.2), width: 0.5),
             ),
             child: Row(
               crossAxisAlignment: CrossAxisAlignment.start,
@@ -148,7 +148,7 @@ class _ScannerScreenState extends ConsumerState<ScannerScreen> {
                   width: 36,
                   height: 36,
                   decoration: BoxDecoration(
-                    color: AppColors.accent.withOpacity(0.15),
+                    color: AppColors.accent.withValues(alpha: 0.15),
                     borderRadius: BorderRadius.circular(10),
                   ),
                   child: const Icon(Icons.phone_iphone,

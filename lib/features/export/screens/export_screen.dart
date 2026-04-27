@@ -175,7 +175,7 @@ class _ExportScreenState extends ConsumerState<ExportScreen> {
                     Text(
                       'PREVIEW',
                       style: AppTextStyles.labelSmall.copyWith(
-                          color: Colors.white.withOpacity(0.5)),
+                          color: Colors.white.withValues(alpha: 0.5)),
                     ),
                     const SizedBox(height: 8),
                     Text(
@@ -243,7 +243,7 @@ class _ExportScreenState extends ConsumerState<ExportScreen> {
       children: [
         Text(k,
             style: AppTextStyles.bodyMedium.copyWith(
-                color: Colors.white.withOpacity(0.6), fontSize: 13)),
+                color: Colors.white.withValues(alpha: 0.6), fontSize: 13)),
         Text(v,
             style: AppTextStyles.labelMedium.copyWith(color: Colors.white)),
       ],
