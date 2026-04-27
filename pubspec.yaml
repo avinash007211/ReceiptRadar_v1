@@ -26,7 +26,8 @@ dependencies:
   google_mlkit_text_recognition: ^0.15.0
   image_picker: ^1.1.2
 
-  # Local storage (keep it simple — no Hive, no Firebase)
+  # Local storage — encrypted on Android (Keystore) and iOS (Keychain)
+  flutter_secure_storage: ^9.2.2
   shared_preferences: ^2.3.2
   path_provider: ^2.1.4
   path: ^1.9.0

@@ -4,9 +4,15 @@ plugins {
     id "dev.flutter.flutter-gradle-plugin"
 }
 
+def keystorePropertiesFile = rootProject.file('key.properties')
+def keystoreProperties = new Properties()
+if (keystorePropertiesFile.exists()) {
+    keystoreProperties.load(new FileInputStream(keystorePropertiesFile))
+}
+
 android {
     namespace "com.receiptradar.app"
-    compileSdk flutter.compileSdkVersion
+    compileSdk 35
     ndkVersion flutter.ndkVersion
 
     compileOptions {
@@ -22,17 +28,32 @@ android {
     defaultConfig {
         applicationId "com.receiptradar.app"
         minSdk 24
-        targetSdk flutter.targetSdkVersion
+        targetSdk 35
         versionCode flutter.versionCode
         versionName flutter.versionName
         multiDexEnabled true
     }
 
+    signingConfigs {
+        release {
+            if (keystorePropertiesFile.exists()) {
+                keyAlias keystoreProperties['keyAlias']
+                keyPassword keystoreProperties['keyPassword']
+                storeFile file(keystoreProperties['storeFile'])
+                storePassword keystoreProperties['storePassword']
+            }
+        }
+    }
+
     buildTypes {
         release {
-            signingConfig signingConfigs.debug
-            minifyEnabled false
-            shrinkResources false
+            // Falls back to debug signing if key.properties is not present (dev builds only)
+            signingConfig keystorePropertiesFile.exists()
+                ? signingConfigs.release
+                : signingConfigs.debug
+            minifyEnabled true
+            shrinkResources true
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
     }
 }

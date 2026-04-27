@@ -1,23 +1,24 @@
 import 'dart:convert';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:shared_preferences/shared_preferences.dart';
+import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 
 import '../constants/app_constants.dart';
 import '../../features/receipt/models/receipt.dart';
 
-/// Async provider that loads receipts from SharedPreferences on app start.
+const _storage = FlutterSecureStorage(
+  aOptions: AndroidOptions(encryptedSharedPreferences: true),
+);
+
+/// Async provider that loads receipts from encrypted storage on app start.
 /// UI widgets use ref.watch(receiptsProvider) to get a reactive list.
 class ReceiptStore extends AsyncNotifier<List<Receipt>> {
-  late SharedPreferences _prefs;
-
   @override
   Future<List<Receipt>> build() async {
-    _prefs = await SharedPreferences.getInstance();
     return _load();
   }
 
-  List<Receipt> _load() {
-    final raw = _prefs.getString(AppConstants.receiptsKey);
+  Future<List<Receipt>> _load() async {
+    final raw = await _storage.read(key: AppConstants.receiptsKey);
     if (raw == null || raw.isEmpty) return <Receipt>[];
     try {
       final List<dynamic> list = jsonDecode(raw) as List<dynamic>;
@@ -31,22 +32,18 @@ class ReceiptStore extends AsyncNotifier<List<Receipt>> {
 
   Future<void> _save(List<Receipt> receipts) async {
     final raw = jsonEncode(receipts.map((r) => r.toJson()).toList());
-    await _prefs.setString(AppConstants.receiptsKey, raw);
+    await _storage.write(key: AppConstants.receiptsKey, value: raw);
   }
 
   // ── Public API ─────────────────────────────────────
 
   Future<void> add(Receipt receipt) async {
-    // Use .value instead of .valueOrNull to avoid undefined getter errors
     final current = state.value ?? <Receipt>[];
-    // Explicitly type the list to avoid List<dynamic> errors
     final updated = <Receipt>[receipt, ...current];
     await _save(updated);
     state = AsyncValue.data(updated);
   }
 
-  /// RENAMED from 'update' to 'updateReceipt'
-  /// This avoids a naming collision with AsyncNotifier.update()
   Future<void> updateReceipt(Receipt receipt) async {
     final current = state.value ?? <Receipt>[];
     final updated = current
@@ -64,7 +61,7 @@ class ReceiptStore extends AsyncNotifier<List<Receipt>> {
   }
 
   Future<void> clear() async {
-    await _prefs.remove(AppConstants.receiptsKey);
+    await _storage.delete(key: AppConstants.receiptsKey);
     state = const AsyncValue.data(<Receipt>[]);
   }
 
@@ -85,21 +82,21 @@ final receiptsProvider = AsyncNotifierProvider<ReceiptStore, List<Receipt>>(
 
 // ── Pro status ────────────────────────────────────────
 class ProStatus extends Notifier<bool> {
-  late SharedPreferences _prefs;
-
   @override
   bool build() {
     return false;
   }
 
   Future<void> init() async {
-    _prefs = await SharedPreferences.getInstance();
-    state = _prefs.getBool(AppConstants.proStatusKey) ?? false;
+    final value = await _storage.read(key: AppConstants.proStatusKey);
+    state = value == 'true';
   }
 
   Future<void> setPro(bool isPro) async {
-    _prefs = await SharedPreferences.getInstance();
-    await _prefs.setBool(AppConstants.proStatusKey, isPro);
+    await _storage.write(
+      key: AppConstants.proStatusKey,
+      value: isPro.toString(),
+    );
     state = isPro;
   }
 }
