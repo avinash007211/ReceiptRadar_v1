@@ -88,3 +88,19 @@ lib/generated_plugin_registrant.dart
 .env.*.local
 *.pem
 secrets.json
+
+# Gradle cache
+.gradle/
+**/android/.gradle/
+**/local.properties
+
+# Gradle cache
+.gradle/
+**/android/.gradle/
+**/local.properties
+
+# Gradle cache
+.gradle/
+**/android/.gradle/
+**/local.properties
+.claude/
